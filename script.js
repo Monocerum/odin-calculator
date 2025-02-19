@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let operationButtons = document.querySelectorAll('.calculation-item');
-    let clearButtons = document.querySelectorAll('.clear-content');
-    let calculateButton = document.querySelector('.calculate-result');
+    let operationButtons = document.querySelectorAll(".calculation-item");
+    let clearButtons = document.querySelectorAll(".clear-content");
+    let calculateButton = document.querySelector(".calculate-result");
     let currentSelection = document.getElementById("operationPreviewText");
     let resultContainer = document.getElementById("resultItem");
+    let backspaceButton = document.getElementById("backspace");
 
     let expression = "";
     let operandLeft = null;
@@ -21,6 +22,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 handleNumber(currentValue);
             }
         })
+    })
+
+    backspaceButton.addEventListener("click", function(event) {
+        if (currentSelection.value) {
+            currentSelection.value = currentSelection.value.slice(0, -1);
+
+            if (currentSelection.value === "") {
+                currentSelection.value = "";
+
+                if (newOperand) {
+                    operandLeft = null;
+                    operator = null;
+                }
+            }
+        }
     })
 
     function handleNumber(currentValue) {
@@ -116,19 +132,19 @@ document.addEventListener("DOMContentLoaded", function () {
         let result = 0;
 
         switch(operator) {
-            case '+':
+            case "+":
                 result = addNum(operandLeft, operandRight);
                 break;
             
-            case '-':
+            case "-":
                 result = subtractNum(operandLeft, operandRight);
                 break;
 
-            case '÷':
+            case "÷":
                 result = divideNum(operandLeft, operandRight);
                 break;
 
-            case 'x':
+            case "x":
                 result = multiplyNum(operandLeft, operandRight);
                 break;
             

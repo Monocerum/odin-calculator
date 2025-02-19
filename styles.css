@@ -74,6 +74,16 @@ button:hover {
     width: 75px;
 }
 
+.biyoo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.biyoo {
+    width: 50px;
+}
+
 .clear-content {
     background-color: #012625;
     border: none;
