@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     })
 
-    backspaceButton.addEventListener("click", function(event) {
+    backspaceButton.addEventListener("click", function() {
         if (currentSelection.value) {
             currentSelection.value = currentSelection.value.slice(0, -1);
 
@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
     function handleNumber(currentValue) {
+        if (currentValue === "." && currentSelection.value.includes(".")) {
+            return;
+        }
+        
         if (newOperand) {
             currentSelection.value = currentValue;
             newOperand = false;
