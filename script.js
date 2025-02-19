@@ -70,17 +70,21 @@ document.addEventListener("DOMContentLoaded", function () {
     function calculate() {
         operandRight = parseFloat(currentSelection.value);
 
-        if (!operandRight || !operator) {
+        if (operator === null || operandRight === null) {
             operandLeft = parseFloat(currentSelection.value);
             result = operandLeft;
-        } else {
+        } else if (!isNaN(operandLeft) && !isNaN(operandRight)) {
             result = operate(operandLeft, operator, operandRight);
+        } else {
+            return;
         }
 
         currentSelection.value = result;
         resultContainer.value = result;
 
         operandLeft = result;
+        operator = null;
+        operandRight = null;
         newOperand = true;
     }
 
