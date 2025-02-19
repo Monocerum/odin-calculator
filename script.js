@@ -69,7 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function calculate() {
         operandRight = parseFloat(currentSelection.value);
-        result = operate(operandLeft, operator, operandRight);
+
+        if (!operandRight || !operator) {
+            operandLeft = parseFloat(currentSelection.value);
+            result = operandLeft;
+        } else {
+            result = operate(operandLeft, operator, operandRight);
+        }
 
         currentSelection.value = result;
         resultContainer.value = result;
